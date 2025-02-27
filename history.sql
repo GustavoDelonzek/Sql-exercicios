@@ -158,3 +158,15 @@ CREATE TABLE departamento(
     descricaoFuncional VARCHAR(80),
     localizacao TEXT
 );
+/* 2025-02-27 14:31:06 [13 ms] */ 
+SELECT * FROM produto LIMIT 100;
+/* 2025-02-27 14:32:54 [9 ms] */ 
+SELECT fornecedor.`codFornecedor`, fornecedor.`nomeFantasia`, fornecedor.endereco, fornecedor.telefone, fornecedor.`codCidade` FROM fornecedor LIMIT 100;
+/* 2025-02-27 14:36:17 [9 ms] */ 
+SELECT venda.`codVenda`, venda.`dataVenda` FROM venda WHERE venda.status = 'Despachada' LIMIT 100;
+/* 2025-02-27 14:39:32 [1 ms] */ 
+SELECT `produtoLote`.`numeroLote` FROM `produtoLote` WHERE `dataValidade` < CURRENT_DATE LIMIT 100;
+/* 2025-02-27 14:39:50 [4 ms] */ 
+SELECT produtoLote.`numeroLote` FROM `produtoLote` WHERE `dataValidade` < CURRENT_DATE LIMIT 100;
+/* 2025-02-27 14:40:24 [5 ms] */ 
+SELECT departamento.nome FROM departamento LIMIT 100;
