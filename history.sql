@@ -1016,3 +1016,30 @@ WHERE c.endereco LIKE '%Rua%' LIMIT 100;
 SELECT `clienteFisico`.nome, `clienteFisico`.cpf, cliente.endereco FROM `clienteFisico`
 JOIN cliente ON cliente.`codCliente` = `clienteFisico`.`codCliente`
 WHERE cliente.endereco LIKE '%Rua%' LIMIT 100;
+/* 2025-03-01 18:25:23 [18 ms] */ 
+SELECT venda.`codVenda`, venda.`dataVenda`, vendedor.nome FROM venda 
+INNER JOIN vendedor
+ON venda.`codVendedor` = vendedor.`codVendedor`
+WHERE venda.status = 'Despachada' LIMIT 100;
+/* 2025-03-01 18:26:24 [11 ms] */ 
+SELECT vendedor.nome FROM venda
+ JOIN vendedor ON venda.`codVendedor` = vendedor.`codVendedor`
+ JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente`
+WHERE `clienteJuridico`.`nomeFantasia` = 'Gelinski' LIMIT 100;
+/* 2025-03-01 18:26:27 [12 ms] */ 
+SELECT produto.`codProduto`, `produtoLote`.`numeroLote` FROM produto
+JOIN `produtoLote` ON produto.`codProduto` = `produtoLote`.`codProduto`
+WHERE `produtoLote`.`dataValidade` < CURRENT_DATE LIMIT 100;
+/* 2025-03-01 18:26:36 [11 ms] */ 
+SELECT departamento.nome, vendedor.nome FROM departamento
+INNER JOIN vendedor ON departamento.`codDepartamento` = vendedor.`codDepartamento` LIMIT 100;
+/* 2025-03-01 18:26:39 [7 ms] */ 
+SELECT vendedor.nome FROM venda
+ JOIN vendedor ON venda.`codVendedor` = vendedor.`codVendedor`
+ JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente`
+WHERE `clienteJuridico`.`nomeFantasia` = 'Gelinski' LIMIT 100;
+/* 2025-03-01 18:26:46 [13 ms] */ 
+SELECT `clienteJuridico`.`nomeFantasia`, cliente.endereco, cliente.telefone, cidade.nome, cidade.`siglaEstado` FROM `clienteJuridico`
+ JOIN cliente ON `clienteJuridico`.`codCliente` = cliente.`codCliente`
+ JOIN cidade ON cliente.`codCidade` = cidade.`codCidade`
+WHERE cliente.`dataCadastro` BETWEEN '1999-01-01' AND '2003-06-30' LIMIT 100;

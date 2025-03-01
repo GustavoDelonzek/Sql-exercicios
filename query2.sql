@@ -8,7 +8,7 @@ on estado.`siglaEstado` = cidade.`siglaEstado`;
 SELECT venda.`codVenda`, venda.`dataVenda`, vendedor.nome FROM venda 
 INNER JOIN vendedor
 ON venda.`codVendedor` = vendedor.`codVendedor`
-WHERE status = 'Despachada';
+WHERE venda.status = 'Despachada';
 
 SELECT `clienteFisico`.nome, `clienteFisico`.cpf, cliente.endereco FROM `clienteFisico`
 JOIN cliente ON cliente.`codCliente` = `clienteFisico`.`codCliente`
@@ -24,11 +24,11 @@ WHERE cliente.`dataCadastro` BETWEEN '1999-01-01' AND '2003-06-30' ;
 SELECT vendedor.nome FROM venda
  JOIN vendedor ON venda.`codVendedor` = vendedor.`codVendedor`
  JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente`
-WHERE `clienteJuridico`.`nomeFantasia` = "Gelinski";
+WHERE `clienteJuridico`.`nomeFantasia` = 'Gelinski';
 
 SELECT produto.`codProduto`, `produtoLote`.`numeroLote` FROM produto
 JOIN `produtoLote` ON produto.`codProduto` = `produtoLote`.`codProduto`
-WHERE `dataValidade` < CURRENT_DATE;
+WHERE `produtoLote`.`dataValidade` < CURRENT_DATE;
 
 SELECT departamento.nome, vendedor.nome FROM departamento
 INNER JOIN vendedor ON departamento.`codDepartamento` = vendedor.`codDepartamento`;
