@@ -1043,3 +1043,209 @@ SELECT `clienteJuridico`.`nomeFantasia`, cliente.endereco, cliente.telefone, cid
  JOIN cliente ON `clienteJuridico`.`codCliente` = cliente.`codCliente`
  JOIN cidade ON cliente.`codCidade` = cidade.`codCidade`
 WHERE cliente.`dataCadastro` BETWEEN '1999-01-01' AND '2003-06-30' LIMIT 100;
+/* 2025-03-01 19:25:12 [52 ms] */ 
+SELECT codPedido, dataRealizacao, dataEntrega, nomeFantasia
+FROM pedido
+NATURAL JOIN fornecedor
+WHERE `dataRealizacao` = 2014 LIMIT 100;
+/* 2025-03-01 19:26:34 [43 ms] */ 
+SELECT codPedido, dataRealizacao, dataEntrega, nomeFantasia
+FROM pedido
+NATURAL JOIN fornecedor
+WHERE EXTRACT(YEAR FROM dataRealizacao) = 2014 LIMIT 100;
+/* 2025-03-01 19:26:50 [6 ms] */ 
+SELECT codPedido, dataRealizacao, dataEntrega, nomeFantasia
+FROM pedido
+NATURAL JOIN fornecedor
+WHERE EXTRACT(YEAR FROM dataRealizacao) = 2024 LIMIT 100;
+/* 2025-03-01 19:31:02 [6 ms] */ 
+SELECT codPedido, dataRealizacao, dataEntrega, nomeFantasia
+FROM pedido
+NATURAL JOIN fornecedor
+WHERE EXTRACT(YEAR FROM dataRealizacao) = 2014 LIMIT 100;
+/* 2025-03-01 19:31:04 [15 ms] */ 
+SELECT v.nome, v.`dataNascimento`, c.nome 
+FROM vendedor v 
+JOIN cidade c ON c.`codCidade` = v.`codCidade`
+WHERE c.nome = 'Apucarana' LIMIT 100;
+/* 2025-03-01 19:32:19 [9 ms] */ 
+SELECT v.nome, v.`dataNascimento`, c.nome 
+FROM vendedor v 
+JOIN cidade c ON c.`codCidade` = v.`codCidade`
+WHERE c.nome = 'São Paulo' LIMIT 100;
+/* 2025-03-01 20:07:46 [63 ms] */ 
+SELECT venda.codVenda, venda.dataVenda, vendedor.nome, `produtoLote`.`numeroLote`, produto.descricao
+FROM venda
+NATURAL JOIN vendedor
+NATURAL JOIN produto
+NATURAL JOIN `produtoLote`
+WHERE produto.descricao = 'Cal' LIMIT 100;
+/* 2025-03-01 20:08:05 [4 ms] */ 
+SELECT venda.codVenda, venda.dataVenda, vendedor.nome, `produtoLote`.`numeroLote`, produto.descricao
+FROM venda
+NATURAL JOIN vendedor
+NATURAL JOIN produto
+NATURAL JOIN `produtoLote`
+WHERE produto.descricao = 'Smartphone' LIMIT 100;
+/* 2025-03-01 20:13:26 [15 ms] */ 
+SELECT classe.sigla, classe.nome, produto.`codProduto`, produto.descricao, produto.`estoqueMinimo`
+FROM produto
+NATURAL JOIN classe
+WHERE classe.nome = 'Acabamentos' LIMIT 100;
+/* 2025-03-01 20:13:49 [2 ms] */ 
+SELECT classe.sigla, classe.nome, produto.`codProduto`, produto.descricao, produto.`estoqueMinimo`
+FROM produto
+NATURAL JOIN classe
+WHERE classe.nome = 'Vendas' LIMIT 100;
+/* 2025-03-01 20:14:04 [54 ms] */ 
+SELECT classe.sigla, classe.nome, produto.`codProduto`, produto.descricao, produto.`estoqueMinimo`
+FROM produto
+NATURAL JOIN classe
+WHERE classe.nome = 'Moda' LIMIT 100;
+/* 2025-03-01 20:14:26 [6 ms] */ 
+SELECT classe.sigla, classe.nome, produto.`codProduto`, produto.descricao, produto.`estoqueMinimo`
+FROM produto
+NATURAL JOIN classe
+WHERE classe.nome = 'Eletrônicos' LIMIT 100;
+/* 2025-03-01 20:16:13 [2 ms] */ 
+SELECT classe.sigla, classe.nome, produto.`codProduto`, produto.descricao, produto.`estoqueMinimo`
+FROM produto
+INNER JOIN classe ON produto.`codClasse` = classe.`codClasse`
+WHERE classe.nome = 'Eletrônicos' LIMIT 100;
+/* 2025-03-01 20:20:13 [13 ms] */ 
+SELECT venda.codVenda, venda.dataVenda, vendedor.nome, `produtoLote`.`numeroLote`, produto.descricao
+FROM venda
+NATURAL JOIN vendedor
+NATURAL JOIN `itemVenda`
+NATURAL JOIN produto
+NATURAL JOIN `produtoLote`
+WHERE produto.descricao = 'Smartphone' LIMIT 100;
+/* 2025-03-01 20:20:52 [3 ms] */ 
+SELECT classe.sigla, classe.nome, produto.`codProduto`, produto.descricao, produto.`estoqueMinimo`
+FROM produto
+INNER JOIN classe ON produto.`codClasse` = classe.`codClasse`
+WHERE classe.nome = 'Eletrônicos' LIMIT 100;
+/* 2025-03-01 20:23:25 [40 ms] */ 
+SELECT fornecedor.`nomeFantasia`, pedido.`codPedido`, pedido.`dataRealizacao`, pedido.`dataEntrega`
+FROM pedido
+INNER JOIN fornecedor ON fornecedor.`codFornecedor` = pedido.`codFornecedor`
+WHERE fornecedor.`nomeFantasia` = 'Incepa' LIMIT 100;
+/* 2025-03-01 20:23:46 [35 ms] */ 
+SELECT fornecedor.`nomeFantasia`, pedido.`codPedido`, pedido.`dataRealizacao`, pedido.`dataEntrega`
+FROM pedido
+INNER JOIN fornecedor ON fornecedor.`codFornecedor` = pedido.`codFornecedor`
+WHERE fornecedor.`nomeFantasia` = 'EletroTec' LIMIT 100;
+/* 2025-03-01 20:27:50 [49 ms] */ 
+SELECT produto.descricao, produto.`codProduto`, venda.`codVenda`
+FROM produto
+LEFT JOIN `itemVenda` ON produto.`codProduto` = `itemVenda`.`codProduto`
+LEFT JOIN venda ON `itemVenda`.`codVenda` = venda.`codVenda` LIMIT 100;
+/* 2025-03-01 20:29:12 [22 ms] */ 
+INSERT INTO produto (descricao, unidadeMedida, embalagem, codClasse, precoVenda, estoqueMinimo) 
+VALUES 
+('CArro', 'UN', 'a', 1, 155500.00, 10);
+/* 2025-03-01 20:29:15 [51 ms] */ 
+SELECT produto.descricao, produto.`codProduto`, venda.`codVenda`
+FROM produto
+LEFT JOIN `itemVenda` ON produto.`codProduto` = `itemVenda`.`codProduto`
+LEFT JOIN venda ON `itemVenda`.`codVenda` = venda.`codVenda` LIMIT 100;
+/* 2025-03-01 20:57:45 [46 ms] */ 
+SELECT fornecedor.`nomeFantasia`, pedido.`codPedido`, pedido.`dataEntrega`
+FROM fornecedor
+LEFT JOIN pedido ON pedido.`codFornecedor` = fornecedor.`codFornecedor` LIMIT 100;
+/* 2025-03-01 20:59:31 [18 ms] */ 
+INSERT INTO fornecedor (nomeFantasia, razaoSocial, ie, cgc, endereco, telefone, codCidade) 
+VALUES 
+('CAroline Chapinhas', 'Chapinha Caroline S.A.', '234253', '2423423421', 'Rua das Flores, 100', '11 32123-4321', 1);
+/* 2025-03-01 20:59:34 [43 ms] */ 
+SELECT fornecedor.`nomeFantasia`, pedido.`codPedido`, pedido.`dataEntrega`
+FROM fornecedor
+LEFT JOIN pedido ON pedido.`codFornecedor` = fornecedor.`codFornecedor` LIMIT 100;
+/* 2025-03-01 21:08:12 [14 ms] */ 
+SELECT departamento.nome, departamento.localizacao, vendedor.nome, vendedor.`dataNascimento`
+FROM departamento
+RIGHT JOIN vendedor ON vendedor.`codDepartamento` = departamento.`codDepartamento` LIMIT 100;
+/* 2025-03-01 21:09:03 [16 ms] */ 
+INSERT INTO departamento (nome, descricaoFuncional, localizacao) 
+VALUES 
+('Suporte', 'Responsável pelo suporte dos produtos', 'Avenida Calig, 3000');
+/* 2025-03-01 21:09:16 [6 ms] */ 
+SELECT departamento.nome, departamento.localizacao, vendedor.nome, vendedor.`dataNascimento`
+FROM departamento
+RIGHT JOIN vendedor ON vendedor.`codDepartamento` = departamento.`codDepartamento` LIMIT 100;
+/* 2025-03-01 21:10:40 [8 ms] */ 
+SELECT * FROM departamento LIMIT 100;
+/* 2025-03-01 21:10:45 [5 ms] */ 
+SELECT departamento.nome, departamento.localizacao, vendedor.nome, vendedor.`dataNascimento`
+FROM departamento
+RIGHT JOIN vendedor ON vendedor.`codDepartamento` = departamento.`codDepartamento` LIMIT 100;
+/* 2025-03-01 21:11:32 [7 ms] */ 
+SELECT departamento.nome, departamento.localizacao, vendedor.nome, vendedor.`dataNascimento`
+FROM vendedor
+RIGHT JOIN departamento ON vendedor.`codDepartamento` = departamento.`codDepartamento` LIMIT 100;
+/* 2025-03-01 21:12:01 [19 ms] */ 
+INSERT INTO vendedor (nome, dataNascimento, endereco, cep, telefone, codCidade, dataContratacao, codDepartamento) 
+VALUES 
+('ALemid', '1985-07-23', 'Rua da Esperança, 150', '12345678', '11 98765-4321', 1, '2022-05-10', 1);
+/* 2025-03-01 21:12:04 [27 ms] */ 
+SELECT departamento.nome, departamento.localizacao, vendedor.nome, vendedor.`dataNascimento`
+FROM vendedor
+RIGHT JOIN departamento ON vendedor.`codDepartamento` = departamento.`codDepartamento` LIMIT 100;
+/* 2025-03-01 23:27:44 [11 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM venda
+RIGHT JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+RIGHT JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:28:55 [3 ms] */ 
+SELECT * FROM clienteFisico LIMIT 100;
+/* 2025-03-01 23:28:59 [3 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM venda
+RIGHT JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+RIGHT JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:30:22 [28 ms] */ 
+SELECT * FROM cliente LIMIT 100;
+/* 2025-03-01 23:30:39 [12 ms] */ 
+SELECT * FROM `clienteJuridico` LIMIT 100;
+/* 2025-03-01 23:30:43 [6 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM venda
+RIGHT JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+RIGHT JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:30:58 [4 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM venda
+ JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+ JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:31:10 [1 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM venda
+RIGHT OUTER JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+RIGHT JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:31:38 [1 ms] */ 
+SELECT COALESCE(clienteFisico.nome), venda.`codVenda`
+FROM venda
+RIGHT JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:42:38 [45 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM venda
+RIGHT JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+RIGHT JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:51:06 [48 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM cliente
+    LEFT JOIN venda ON venda.`codCliente` = venda.`codCliente`
+RIGHT JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+RIGHT JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:51:34 [6 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM cliente
+LEFT JOIN venda ON venda.`codCliente` = venda.`codCliente`
+INNER JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+RIGHT JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;
+/* 2025-03-01 23:51:47 [39 ms] */ 
+SELECT COALESCE(clienteFisico.nome, `clienteJuridico`.`nomeFantasia`), venda.`codVenda`
+FROM cliente
+LEFT JOIN venda ON venda.`codCliente` = venda.`codCliente`
+RIGHT JOIN `clienteFisico` ON venda.`codCliente` = `clienteFisico`.`codCliente`
+INNER JOIN `clienteJuridico` ON venda.`codCliente` = `clienteJuridico`.`codCliente` LIMIT 100;

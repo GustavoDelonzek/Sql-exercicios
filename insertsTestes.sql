@@ -1,7 +1,6 @@
 INSERT INTO departamento (nome, descricaoFuncional, localizacao) 
 VALUES 
-('Vendas', 'Responsável pela comercialização dos produtos', 'Avenida Paulista, 1000'),
-('Financeiro', 'Responsável pelo controle financeiro', 'Rua dos Três Irmãos, 300');
+('Suporte', 'Responsável pelo suporte dos produtos', 'Avenida Calig, 3000');
 
 INSERT INTO estado (siglaEstado, nome) 
 VALUES 
@@ -17,8 +16,7 @@ VALUES
 
 INSERT INTO vendedor (nome, dataNascimento, endereco, cep, telefone, codCidade, dataContratacao, codDepartamento) 
 VALUES 
-('Carlos Silva', '1985-07-23', 'Rua da Esperança, 150', '12345678', '11 98765-4321', 1, '2022-05-10', 1),
-('Fernanda Souza', '1990-02-15', 'Avenida Paulista, 400', '23456789', '21 99876-5432', 2, '2023-01-20', 2);
+('ALemid', '1985-07-23', 'Rua da Esperança, 150', '12345678', '11 98765-4321', 1, '2022-05-10', 1);
 
 INSERT INTO cliente (endereco, codCidade, telefone, tipo, dataCadastro, cep) 
 VALUES 
@@ -44,8 +42,7 @@ VALUES
 
 INSERT INTO produto (descricao, unidadeMedida, embalagem, codClasse, precoVenda, estoqueMinimo) 
 VALUES 
-('Smartphone', 'UN', 'Caixa', 1, 1500.00, 10),
-('Camisa Polo', 'UN', 'Pacote', 2, 100.00, 50);
+('CArro', 'UN', 'a', 1, 155500.00, 10);
 
 INSERT INTO produtoLote (codProduto, quantidadeAdquirida, quantidadeVendida, precoCusto, dataValidade) 
 VALUES 
@@ -64,8 +61,7 @@ VALUES
 
 INSERT INTO fornecedor (nomeFantasia, razaoSocial, ie, cgc, endereco, telefone, codCidade) 
 VALUES 
-('Global Supplies', 'Global Supplies S.A.', '1239876543', '12398765000111', 'Rua das Flores, 100', '11 32123-4321', 1),
-('EletroTec', 'EletroTec Ltda', '4561237890', '45612378000122', 'Av. dos Eletrônicos, 400', '21 34567-8765', 2);
+('CAroline Chapinhas', 'Chapinha Caroline S.A.', '234253', '2423423421', 'Rua das Flores, 100', '11 32123-4321', 1);
 
 INSERT INTO pedido (dataRealizacao, dataEntrega, codFornecedor, valor) 
 VALUES 
